@@ -13,13 +13,13 @@
     <meta name="description" content="axios简介每个前端框架，都会有类似ajax的异步请求来从后台获取参数（通常是通过钩子函数调用），Vue则是通过axios进行异步请求。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vue笔记：axios">
-<meta property="og:url" content="http://yoursite.com/2020/03/24/Vuenote-axios/index.html">
+<meta property="og:url" content="http://yoursite.com/2020/03/24/vuenote/Vuenote-axios/index.html">
 <meta property="og:site_name" content="FIFA的博客">
 <meta property="og:description" content="axios简介每个前端框架，都会有类似ajax的异步请求来从后台获取参数（通常是通过钩子函数调用），Vue则是通过axios进行异步请求。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
 <meta property="article:published_time" content="2020-03-24T08:49:21.000Z">
-<meta property="article:modified_time" content="2020-03-26T11:29:48.890Z">
+<meta property="article:modified_time" content="2020-04-01T01:11:20.632Z">
 <meta property="article:author" content="FIFA_Z">
 <meta property="article:tag" content="axios">
 <meta name="twitter:card" content="summary">
@@ -75,7 +75,7 @@
 
 <link rel="stylesheet" href="/css/style.css">
 </head>
-<body class="is-2-column">
+<body class="is-3-column">
     <nav class="navbar navbar-main">
     <div class="container">
         <div class="navbar-brand is-flex-center">
@@ -140,7 +140,7 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-8-widescreen has-order-2 column-main">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
 <div class="card">
     
     <div class="card-content article ">
@@ -157,7 +157,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    1 分钟 读完 (大约 194 个字)
+                    4 分钟 读完 (大约 556 个字)
                 </span>
                 
                 
@@ -172,9 +172,20 @@
         <div class="content">
             <h2 id="axios简介"><a href="#axios简介" class="headerlink" title="axios简介"></a>axios简介</h2><p>每个前端框架，都会有类似ajax的异步请求来从后台获取参数（通常是通过钩子函数调用），Vue则是通过axios进行异步请求。</p>
 <a id="more"></a>
-<h2 id="axios使用（集合血与泪之后的最终推荐方案）"><a href="#axios使用（集合血与泪之后的最终推荐方案）" class="headerlink" title="axios使用（集合血与泪之后的最终推荐方案）"></a>axios使用（集合血与泪之后的最终推荐方案）</h2><p>在vue组件内直接加入axios，会导致高耦合，如果要修改某些aixos配置，需要找到各个组件内的axios请求进行修改，如果axios停止维护，所有组件内的异步请求需要全部修改。所以用如下配置去调用axios可避免以上情况发生：</p>
-<h2 id="axios全局配置"><a href="#axios全局配置" class="headerlink" title="axios全局配置"></a>axios全局配置</h2><p>main.js不能用use配置 Uncaught (in promise) TypeError: Cannot read property ‘protocol’ of undefined</p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2>
+<h2 id="axios使用（集合血与泪之后的推荐方案）"><a href="#axios使用（集合血与泪之后的推荐方案）" class="headerlink" title="axios使用（集合血与泪之后的推荐方案）"></a>axios使用（集合血与泪之后的推荐方案）</h2><p>在vue组件内直接加入axios，会导致高耦合，如果要修改某些aixos配置，需要找到各个组件内的axios请求进行修改，如果axios停止维护，所有组件内的异步请求需要全部修改。所以需要将axios从组件内抽离和封装来解耦，</p>
+<figure class="highlight javascript"><figcaption><span>在新建的文件./src/request.js中添加如下代码</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span></span><br><span class="line"><span class="comment">// 通过export导出多个实例 export default只能导出一个实例</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">loginRequest</span>(<span class="params">config</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//创建axios实例</span></span><br><span class="line">    <span class="keyword">const</span> loginRequest = axios.create(&#123;</span><br><span class="line">        baseURL: <span class="string">'http://127.0.0.1:8000'</span>,</span><br><span class="line">        timeout: <span class="number">10000</span>,</span><br><span class="line">        method: <span class="string">'post'</span>,</span><br><span class="line">        headers:&#123;</span><br><span class="line">            <span class="string">'Content-Type'</span>: <span class="string">'application/json'</span>,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">// 发送真正的网络请求</span></span><br><span class="line">    <span class="keyword">return</span> loginRequest(config)</span><br><span class="line">    <span class="comment">//如果有一天，此axios无法使用，在loginRequest内重构新代码，return Promise(config)即可</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><figcaption><span>在Vue组件内导入js文件并直接调用</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//封装request模块</span></span><br><span class="line"><span class="keyword">import</span> &#123;loginRequest&#125; <span class="keyword">from</span> <span class="string">"../request"</span>;</span><br><span class="line"></span><br><span class="line">methods: &#123;</span><br><span class="line">    login:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="comment">//直接引用request中封装好的loginRequest即可</span></span><br><span class="line">        loginRequest(&#123;</span><br><span class="line">            url: <span class="string">'/api/login/confirmAuth/'</span>,</span><br><span class="line">            data: &#123;</span><br><span class="line">                <span class="string">"username"</span>: <span class="keyword">this</span>.usr,</span><br><span class="line">                <span class="string">"password"</span>: <span class="keyword">this</span>.pwd,</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;).then(<span class="function"><span class="params">res</span> =&gt;</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(res.status);</span><br><span class="line">            <span class="keyword">if</span> (res.status == <span class="number">200</span>)&#123;</span><br><span class="line">                <span class="keyword">this</span>.$router.replace(&#123;<span class="attr">path</span>: <span class="string">'/homepage'</span>, <span class="attr">query</span>: &#123;<span class="attr">token</span>: res.data.token&#125;&#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).catch(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(res);</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<h2 id="axios传参"><a href="#axios传参" class="headerlink" title="axios传参"></a>axios传参</h2><ol>
+<li>params传参<figure class="highlight javascript"><figcaption><span>将上文的请求改为params传参</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">loginRequest(&#123;</span><br><span class="line">    url: <span class="string">'/api/login/confirmAuth/'</span>,</span><br><span class="line">    params: &#123;</span><br><span class="line">        <span class="string">"username"</span>: a,</span><br><span class="line">        <span class="string">"password"</span>: b,</span><br><span class="line">        &#125;</span><br><span class="line">&#125;).then(<span class="function"><span class="params">res</span> =&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(res.status);</span><br><span class="line">    <span class="keyword">if</span> (res.status == <span class="number">200</span>)&#123;</span><br><span class="line">        <span class="keyword">this</span>.$router.replace(&#123;<span class="attr">path</span>: <span class="string">'/homepage'</span>, <span class="attr">query</span>: &#123;<span class="attr">token</span>: res.data.token&#125;&#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;).catch(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(res);</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 最后得到的url是 /api/login/confirmAuth?username=a&amp;password=b</span></span><br></pre></td></tr></table></figure></li>
+<li>data传参<br>data传参参考上文axios的使用</li>
+</ol>
+<h2 id="axios全局设置"><a href="#axios全局设置" class="headerlink" title="axios全局设置"></a>axios全局设置</h2><p>全局设置会使得设置的aixos参数在前端任意组件内都可使用，在request.js文件中如下设置</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">axios.defaults.baseURL = <span class="string">'http://127.0.0.1:8000'</span>;</span><br><span class="line">axios.defaults.headers[<span class="string">'Content-Type'</span>] = <span class="string">'application/json'</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="并发axios"><a href="#并发axios" class="headerlink" title="并发axios"></a>并发axios</h2><h2 id="拦截器"><a href="#拦截器" class="headerlink" title="拦截器"></a>拦截器</h2><h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><p>main.js不能用use配置 Uncaught (in promise) TypeError: Cannot read property ‘protocol’ of undefined</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://blog.csdn.net/JEFF_luyiduan/article/details/88890962">Axios（自定义配置新建一个 axios 实例并且封装起来）</a><br><a href="https://www.cnblogs.com/cwzqianduan/p/8675356.html">Axios发送请求时params和data的区别</a></p>
+
         </div>
         
         <div class="level is-size-7 is-uppercase">
@@ -199,16 +210,16 @@
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/03/24/Vuenote-hook/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/03/24/vuenote/Vuenote-vuex/">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">Vue笔记：vue-router</span>
+                <span class="level-item">Vue笔记：vuex</span>
             </a>
         </div>
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2020/03/24/Vuenote-vuex/">
-                <span class="level-item">Vue笔记：vuex</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/03/24/vuenote/Vuenote-templete/">
+                <span class="level-item">Vue笔记：v系列关键词</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -223,7 +234,7 @@
 
 
 
-<div class="column is-4-tablet is-4-desktop is-4-widescreen  has-order-1 column-left ">
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left is-sticky">
     
         
 <div class="card widget">
@@ -262,7 +273,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            11
+                            12
                         </p>
                     </a>
                 </div>
@@ -274,7 +285,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            16
+                            19
                         </p>
                     </a>
                 </div>
@@ -286,7 +297,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            18
+                            24
                         </p>
                     </a>
                 </div>
@@ -327,36 +338,6 @@
         
     </div>
 </div>
-    
-        
-
-    <div class="card widget" id="toc">
-        <div class="card-content">
-            <div class="menu">
-                <h3 class="menu-label">
-                    目录
-                </h3>
-                <ul class="menu-list"><li>
-        <a class="is-flex" href="#axios简介">
-        <span class="has-mr-6">1</span>
-        <span>axios简介</span>
-        </a></li><li>
-        <a class="is-flex" href="#axios使用（集合血与泪之后的最终推荐方案）">
-        <span class="has-mr-6">2</span>
-        <span>axios使用（集合血与泪之后的最终推荐方案）</span>
-        </a></li><li>
-        <a class="is-flex" href="#axios全局配置">
-        <span class="has-mr-6">3</span>
-        <span>axios全局配置</span>
-        </a></li><li>
-        <a class="is-flex" href="#参考">
-        <span class="has-mr-6">4</span>
-        <span>参考</span>
-        </a></li></ul>
-            </div>
-        </div>
-    </div>
-
     
         <div class="card widget">
     <div class="card-content">
@@ -491,7 +472,7 @@
                 <span class="level-item">vue</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">4</span>
+                <span class="level-item tag">5</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/vue/axios/">
@@ -502,9 +483,33 @@
                 <span class="level-item tag">1</span>
             </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/vue/computed/">
+            <span class="level-start">
+                <span class="level-item">computed</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/vue/hook/">
             <span class="level-start">
                 <span class="level-item">hook</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/vue/options/">
+            <span class="level-start">
+                <span class="level-item">options</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/vue/templete/">
+            <span class="level-start">
+                <span class="level-item">templete</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
@@ -536,42 +541,119 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/axios/" style="font-size: 10px;">axios</a> <a href="/tags/binary-tree/" style="font-size: 10px;">binary tree</a> <a href="/tags/closure/" style="font-size: 10px;">closure</a> <a href="/tags/cors/" style="font-size: 10px;">cors</a> <a href="/tags/csrf/" style="font-size: 10px;">csrf</a> <a href="/tags/decorator/" style="font-size: 10px;">decorator</a> <a href="/tags/django/" style="font-size: 20px;">django</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/hook/" style="font-size: 10px;">hook</a> <a href="/tags/lambda/" style="font-size: 10px;">lambda</a> <a href="/tags/mermaid/" style="font-size: 10px;">mermaid</a> <a href="/tags/middleware/" style="font-size: 10px;">middleware</a> <a href="/tags/recursion/" style="font-size: 10px;">recursion</a> <a href="/tags/reflection/" style="font-size: 10px;">reflection</a> <a href="/tags/restframework/" style="font-size: 15px;">restframework</a> <a href="/tags/token/" style="font-size: 10px;">token</a> <a href="/tags/vuerouter/" style="font-size: 10px;">vuerouter</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a>
+        <a href="/tags/axios/" style="font-size: 10px;">axios</a> <a href="/tags/binary-tree/" style="font-size: 10px;">binary tree</a> <a href="/tags/closure/" style="font-size: 10px;">closure</a> <a href="/tags/cors/" style="font-size: 10px;">cors</a> <a href="/tags/csrf/" style="font-size: 10px;">csrf</a> <a href="/tags/decorator/" style="font-size: 10px;">decorator</a> <a href="/tags/django/" style="font-size: 20px;">django</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/hook/" style="font-size: 10px;">hook</a> <a href="/tags/lambda/" style="font-size: 10px;">lambda</a> <a href="/tags/mermaid/" style="font-size: 10px;">mermaid</a> <a href="/tags/middleware/" style="font-size: 10px;">middleware</a> <a href="/tags/options/" style="font-size: 10px;">options</a> <a href="/tags/recursion/" style="font-size: 10px;">recursion</a> <a href="/tags/reflection/" style="font-size: 10px;">reflection</a> <a href="/tags/restframework/" style="font-size: 15px;">restframework</a> <a href="/tags/token/" style="font-size: 10px;">token</a> <a href="/tags/v-bind/" style="font-size: 10px;">v-bind</a> <a href="/tags/v-for/" style="font-size: 10px;">v-for</a> <a href="/tags/v-if/" style="font-size: 10px;">v-if</a> <a href="/tags/v-model/" style="font-size: 10px;">v-model</a> <a href="/tags/v-on/" style="font-size: 10px;">v-on</a> <a href="/tags/vuerouter/" style="font-size: 10px;">vuerouter</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a>
     </div>
 </div>
     
-        <div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-        <h3 class="menu-label">
-            归档
-        </h3>
-        <ul class="menu-list">
+    
+        <div class="column-right-shadow is-hidden-widescreen is-sticky">
         
-        <li>
-            <a class="level is-marginless" href="/archives/2020/03/">
-                <span class="level-start">
-                    <span class="level-item">三月 2020</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">11</span>
-                </span>
-            </a>
-        </li>
-        
-        </ul>
+            
+
+    <div class="card widget" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    目录
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#axios简介">
+        <span class="has-mr-6">1</span>
+        <span>axios简介</span>
+        </a></li><li>
+        <a class="is-flex" href="#axios使用（集合血与泪之后的推荐方案）">
+        <span class="has-mr-6">2</span>
+        <span>axios使用（集合血与泪之后的推荐方案）</span>
+        </a></li><li>
+        <a class="is-flex" href="#axios传参">
+        <span class="has-mr-6">3</span>
+        <span>axios传参</span>
+        </a></li><li>
+        <a class="is-flex" href="#axios全局设置">
+        <span class="has-mr-6">4</span>
+        <span>axios全局设置</span>
+        </a></li><li>
+        <a class="is-flex" href="#并发axios">
+        <span class="has-mr-6">5</span>
+        <span>并发axios</span>
+        </a></li><li>
+        <a class="is-flex" href="#拦截器">
+        <span class="has-mr-6">6</span>
+        <span>拦截器</span>
+        </a></li><li>
+        <a class="is-flex" href="#遇到的问题">
+        <span class="has-mr-6">7</span>
+        <span>遇到的问题</span>
+        </a></li><li>
+        <a class="is-flex" href="#参考">
+        <span class="has-mr-6">8</span>
+        <span>参考</span>
+        </a></li></ul>
+            </div>
         </div>
     </div>
-</div>
-    
-    
-        <div class="column-right-shadow is-hidden-widescreen ">
+
         
         </div>
     
 </div>
 
                 
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right is-sticky">
+    
+        
+
+    <div class="card widget" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    目录
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#axios简介">
+        <span class="has-mr-6">1</span>
+        <span>axios简介</span>
+        </a></li><li>
+        <a class="is-flex" href="#axios使用（集合血与泪之后的推荐方案）">
+        <span class="has-mr-6">2</span>
+        <span>axios使用（集合血与泪之后的推荐方案）</span>
+        </a></li><li>
+        <a class="is-flex" href="#axios传参">
+        <span class="has-mr-6">3</span>
+        <span>axios传参</span>
+        </a></li><li>
+        <a class="is-flex" href="#axios全局设置">
+        <span class="has-mr-6">4</span>
+        <span>axios全局设置</span>
+        </a></li><li>
+        <a class="is-flex" href="#并发axios">
+        <span class="has-mr-6">5</span>
+        <span>并发axios</span>
+        </a></li><li>
+        <a class="is-flex" href="#拦截器">
+        <span class="has-mr-6">6</span>
+        <span>拦截器</span>
+        </a></li><li>
+        <a class="is-flex" href="#遇到的问题">
+        <span class="has-mr-6">7</span>
+        <span>遇到的问题</span>
+        </a></li><li>
+        <a class="is-flex" href="#参考">
+        <span class="has-mr-6">8</span>
+        <span>参考</span>
+        </a></li></ul>
+            </div>
+        </div>
+    </div>
+
+    
+    
+</div>
+
             </div>
         </div>
     </section>

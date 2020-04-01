@@ -70,7 +70,7 @@
 
 <link rel="stylesheet" href="/css/style.css">
 </head>
-<body class="is-2-column">
+<body class="is-3-column">
     <nav class="navbar navbar-main">
     <div class="container">
         <div class="navbar-brand is-flex-center">
@@ -131,7 +131,7 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-8-widescreen has-order-2 column-main"><div class="card">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
     <div class="card-content">
         <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul>
@@ -152,14 +152,14 @@
                 <time class="level-item has-text-grey" datetime="2020-03-24T08:49:21.000Z">2020-03-24</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/vue/">vue</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/vue/hook/">hook</a>
+                <a class="has-link-grey -link" href="/categories/vue/">vue</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/vue/computed/">computed</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/vue/hook/">hook</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/vue/options/">options</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    几秒 读完 (大约 49 个字)
+                    2 分钟 读完 (大约 360 个字)
                 </span>
                 
                 
@@ -168,14 +168,70 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/03/24/Vuenote-hook/">Vue笔记：vue-router</a>
+                <a class="has-link-black-ter" href="/2020/03/24/vuenote/Vuenote-hook&option/">Vue笔记：钩子函数&amp;options</a>
             
         </h1>
         <div class="content">
-            <h2 id="vue组件生命周期简介"><a href="#vue组件生命周期简介" class="headerlink" title="vue组件生命周期简介"></a>vue组件生命周期简介</h2><h2 id="vue-钩子函数"><a href="#vue-钩子函数" class="headerlink" title="vue 钩子函数"></a>vue 钩子函数</h2><h3 id="computed"><a href="#computed" class="headerlink" title="computed"></a>computed</h3><p>创建vue组件时调用</p>
-<h3 id="mounted"><a href="#mounted" class="headerlink" title="mounted"></a>mounted</h3><p>vue组件的模板挂载到DOM上时调用</p>
-<h3 id="updated"><a href="#updated" class="headerlink" title="updated"></a>updated</h3><p>数据刷新时调用</p>
-<h3 id="method"><a href="#method" class="headerlink" title="method"></a>method</h3><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2>
+            <h2 id="vue-钩子函数"><a href="#vue-钩子函数" class="headerlink" title="vue 钩子函数"></a>vue 钩子函数</h2><h3 id="特征介绍"><a href="#特征介绍" class="headerlink" title="特征介绍"></a>特征介绍</h3><table>
+<thead>
+<tr>
+<th>生命周期</th>
+<th>是否获取dom节点</th>
+<th>是否可以获取data</th>
+<th>是否获取methods</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>beforeCreate</td>
+<td>否</td>
+<td>否</td>
+<td>否</td>
+</tr>
+<tr>
+<td>created</td>
+<td>否</td>
+<td>是</td>
+<td>是</td>
+</tr>
+<tr>
+<td>beforeMount</td>
+<td>否</td>
+<td>是</td>
+<td>是</td>
+</tr>
+<tr>
+<td>mounted</td>
+<td>是</td>
+<td>是</td>
+<td>是</td>
+</tr>
+<tr>
+<td>beforeUpdate</td>
+<td>是</td>
+<td>是</td>
+<td>是</td>
+</tr>
+<tr>
+<td>updated</td>
+<td>是</td>
+<td>是</td>
+<td>是</td>
+</tr>
+</tbody></table>
+<h3 id="计算属性"><a href="#计算属性" class="headerlink" title="计算属性"></a>计算属性</h3><p>通过计算属性会进行缓存，多次调用时，只要与其相关的参数不变，计算属性只会计算一次</p>
+<ol>
+<li>基本使用<figure class="highlight javascript"><figcaption><span>在vue组件script标签下添加</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">data:&#123;</span><br><span class="line">    firstname: <span class="string">'FIFA'</span></span><br><span class="line">    lastname: <span class="string">'z'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//我想输出时，将firstname和lastname进行拼接后输出</span></span><br><span class="line">computed:&#123;</span><br><span class="line">    <span class="comment">//以调用参数的形式调用此方法:&lt;h2&gt;&#123;&#123;this.fullname&#125;&#125;&lt;h2&gt;</span></span><br><span class="line">    <span class="comment">//因为是计算属性，是属性，所以命名时，用属性的方式命名（名词命名）</span></span><br><span class="line">    <span class="comment">//fullname，不是getfullname</span></span><br><span class="line">    fullname()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.firstname+<span class="string">' '</span>+<span class="keyword">this</span>.lastname</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>计算属性的getter和setter方法<figure class="highlight javascript"><figcaption><span>添加位置和前面一样</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">computed:&#123;</span><br><span class="line">    fullname:&#123;</span><br><span class="line">        <span class="comment">//计算属性一般为只读属性，所以几乎不会用到set方法</span></span><br><span class="line">        <span class="comment">//推荐前面的方法</span></span><br><span class="line">        <span class="keyword">set</span>()&#123;</span><br><span class="line">            <span class="comment">//so sth</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">get</span>()&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.firstname+<span class="string">' '</span>+<span class="keyword">this</span>.lastname</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="vue的options"><a href="#vue的options" class="headerlink" title="vue的options"></a>vue的options</h2><ol>
+<li>el:<br> 类型：string或HTMLElement<br> 决定Vue实例会挂载到哪一个DOM</li>
+<li>methods：<br>类型： function<br>属于vue的方法，可在整个组件内进行调用</li>
+<li>data:<br> 类型：obj或function（组件当中，data必须是函数）<br> vue内部对应的数据对象<br>方法：定义在类里面<br>函数：free</li>
+</ol>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://segmentfault.com/a/1190000020058583">vue中created与mounted区别</a></p>
+
         </div>
         
         
@@ -196,7 +252,7 @@
 
 
 
-<div class="column is-4-tablet is-4-desktop is-4-widescreen  has-order-1 column-left ">
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left is-sticky">
     
         
 <div class="card widget">
@@ -235,7 +291,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            11
+                            12
                         </p>
                     </a>
                 </div>
@@ -247,7 +303,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            16
+                            19
                         </p>
                     </a>
                 </div>
@@ -259,7 +315,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            18
+                            24
                         </p>
                     </a>
                 </div>
@@ -300,8 +356,6 @@
         
     </div>
 </div>
-    
-        
     
         <div class="card widget">
     <div class="card-content">
@@ -436,7 +490,7 @@
                 <span class="level-item">vue</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">4</span>
+                <span class="level-item tag">5</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/vue/axios/">
@@ -447,9 +501,33 @@
                 <span class="level-item tag">1</span>
             </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/vue/computed/">
+            <span class="level-start">
+                <span class="level-item">computed</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/vue/hook/">
             <span class="level-start">
                 <span class="level-item">hook</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/vue/options/">
+            <span class="level-start">
+                <span class="level-item">options</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/vue/templete/">
+            <span class="level-start">
+                <span class="level-item">templete</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
@@ -481,42 +559,31 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/axios/" style="font-size: 10px;">axios</a> <a href="/tags/binary-tree/" style="font-size: 10px;">binary tree</a> <a href="/tags/closure/" style="font-size: 10px;">closure</a> <a href="/tags/cors/" style="font-size: 10px;">cors</a> <a href="/tags/csrf/" style="font-size: 10px;">csrf</a> <a href="/tags/decorator/" style="font-size: 10px;">decorator</a> <a href="/tags/django/" style="font-size: 20px;">django</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/hook/" style="font-size: 10px;">hook</a> <a href="/tags/lambda/" style="font-size: 10px;">lambda</a> <a href="/tags/mermaid/" style="font-size: 10px;">mermaid</a> <a href="/tags/middleware/" style="font-size: 10px;">middleware</a> <a href="/tags/recursion/" style="font-size: 10px;">recursion</a> <a href="/tags/reflection/" style="font-size: 10px;">reflection</a> <a href="/tags/restframework/" style="font-size: 15px;">restframework</a> <a href="/tags/token/" style="font-size: 10px;">token</a> <a href="/tags/vuerouter/" style="font-size: 10px;">vuerouter</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a>
-    </div>
-</div>
-    
-        <div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-        <h3 class="menu-label">
-            归档
-        </h3>
-        <ul class="menu-list">
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2020/03/">
-                <span class="level-start">
-                    <span class="level-item">三月 2020</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">11</span>
-                </span>
-            </a>
-        </li>
-        
-        </ul>
-        </div>
+        <a href="/tags/axios/" style="font-size: 10px;">axios</a> <a href="/tags/binary-tree/" style="font-size: 10px;">binary tree</a> <a href="/tags/closure/" style="font-size: 10px;">closure</a> <a href="/tags/cors/" style="font-size: 10px;">cors</a> <a href="/tags/csrf/" style="font-size: 10px;">csrf</a> <a href="/tags/decorator/" style="font-size: 10px;">decorator</a> <a href="/tags/django/" style="font-size: 20px;">django</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/hook/" style="font-size: 10px;">hook</a> <a href="/tags/lambda/" style="font-size: 10px;">lambda</a> <a href="/tags/mermaid/" style="font-size: 10px;">mermaid</a> <a href="/tags/middleware/" style="font-size: 10px;">middleware</a> <a href="/tags/options/" style="font-size: 10px;">options</a> <a href="/tags/recursion/" style="font-size: 10px;">recursion</a> <a href="/tags/reflection/" style="font-size: 10px;">reflection</a> <a href="/tags/restframework/" style="font-size: 15px;">restframework</a> <a href="/tags/token/" style="font-size: 10px;">token</a> <a href="/tags/v-bind/" style="font-size: 10px;">v-bind</a> <a href="/tags/v-for/" style="font-size: 10px;">v-for</a> <a href="/tags/v-if/" style="font-size: 10px;">v-if</a> <a href="/tags/v-model/" style="font-size: 10px;">v-model</a> <a href="/tags/v-on/" style="font-size: 10px;">v-on</a> <a href="/tags/vuerouter/" style="font-size: 10px;">vuerouter</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a>
     </div>
 </div>
     
     
-        <div class="column-right-shadow is-hidden-widescreen ">
+        <div class="column-right-shadow is-hidden-widescreen is-sticky">
+        
+            
         
         </div>
     
 </div>
 
                 
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right is-sticky">
+    
+        
+    
+    
+</div>
+
             </div>
         </div>
     </section>
