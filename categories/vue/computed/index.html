@@ -162,7 +162,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    2 分钟 读完 (大约 360 个字)
+                    2 分钟 读完 (大约 361 个字)
                 </span>
                 
                 
@@ -175,68 +175,17 @@
             
         </h1>
         <div class="content">
-            <h2 id="vue-钩子函数"><a href="#vue-钩子函数" class="headerlink" title="vue 钩子函数"></a>vue 钩子函数</h2><h3 id="特征介绍"><a href="#特征介绍" class="headerlink" title="特征介绍"></a>特征介绍</h3><table>
-<thead>
-<tr>
-<th>生命周期</th>
-<th>是否获取dom节点</th>
-<th>是否可以获取data</th>
-<th>是否获取methods</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>beforeCreate</td>
-<td>否</td>
-<td>否</td>
-<td>否</td>
-</tr>
-<tr>
-<td>created</td>
-<td>否</td>
-<td>是</td>
-<td>是</td>
-</tr>
-<tr>
-<td>beforeMount</td>
-<td>否</td>
-<td>是</td>
-<td>是</td>
-</tr>
-<tr>
-<td>mounted</td>
-<td>是</td>
-<td>是</td>
-<td>是</td>
-</tr>
-<tr>
-<td>beforeUpdate</td>
-<td>是</td>
-<td>是</td>
-<td>是</td>
-</tr>
-<tr>
-<td>updated</td>
-<td>是</td>
-<td>是</td>
-<td>是</td>
-</tr>
-</tbody></table>
-<h3 id="计算属性"><a href="#计算属性" class="headerlink" title="计算属性"></a>计算属性</h3><p>通过计算属性会进行缓存，多次调用时，只要与其相关的参数不变，计算属性只会计算一次</p>
-<ol>
-<li>基本使用<figure class="highlight javascript"><figcaption><span>在vue组件script标签下添加</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">data:&#123;</span><br><span class="line">    firstname: <span class="string">'FIFA'</span></span><br><span class="line">    lastname: <span class="string">'z'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//我想输出时，将firstname和lastname进行拼接后输出</span></span><br><span class="line">computed:&#123;</span><br><span class="line">    <span class="comment">//以调用参数的形式调用此方法:&lt;h2&gt;&#123;&#123;this.fullname&#125;&#125;&lt;h2&gt;</span></span><br><span class="line">    <span class="comment">//因为是计算属性，是属性，所以命名时，用属性的方式命名（名词命名）</span></span><br><span class="line">    <span class="comment">//fullname，不是getfullname</span></span><br><span class="line">    fullname()&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.firstname+<span class="string">' '</span>+<span class="keyword">this</span>.lastname</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>计算属性的getter和setter方法<figure class="highlight javascript"><figcaption><span>添加位置和前面一样</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">computed:&#123;</span><br><span class="line">    fullname:&#123;</span><br><span class="line">        <span class="comment">//计算属性一般为只读属性，所以几乎不会用到set方法</span></span><br><span class="line">        <span class="comment">//推荐前面的方法</span></span><br><span class="line">        <span class="keyword">set</span>()&#123;</span><br><span class="line">            <span class="comment">//so sth</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">get</span>()&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.firstname+<span class="string">' '</span>+<span class="keyword">this</span>.lastname</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h2 id="vue的options"><a href="#vue的options" class="headerlink" title="vue的options"></a>vue的options</h2><ol>
-<li>el:<br> 类型：string或HTMLElement<br> 决定Vue实例会挂载到哪一个DOM</li>
-<li>methods：<br>类型： function<br>属于vue的方法，可在整个组件内进行调用</li>
-<li>data:<br> 类型：obj或function（组件当中，data必须是函数）<br> vue内部对应的数据对象<br>方法：定义在类里面<br>函数：free</li>
-</ol>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://segmentfault.com/a/1190000020058583">vue中created与mounted区别</a></p>
-
+            <h2 id="vue-钩子函数"><a href="#vue-钩子函数" class="headerlink" title="vue 钩子函数"></a>vue 钩子函数</h2>
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2020/03/24/vuenote/Vuenote-hook&option/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
@@ -562,7 +511,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/axios/" style="font-size: 10px;">axios</a> <a href="/tags/binary-tree/" style="font-size: 10px;">binary tree</a> <a href="/tags/closure/" style="font-size: 10px;">closure</a> <a href="/tags/cors/" style="font-size: 10px;">cors</a> <a href="/tags/csrf/" style="font-size: 10px;">csrf</a> <a href="/tags/decorator/" style="font-size: 10px;">decorator</a> <a href="/tags/django/" style="font-size: 20px;">django</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/hook/" style="font-size: 10px;">hook</a> <a href="/tags/lambda/" style="font-size: 10px;">lambda</a> <a href="/tags/mermaid/" style="font-size: 10px;">mermaid</a> <a href="/tags/middleware/" style="font-size: 10px;">middleware</a> <a href="/tags/options/" style="font-size: 10px;">options</a> <a href="/tags/recursion/" style="font-size: 10px;">recursion</a> <a href="/tags/reflection/" style="font-size: 10px;">reflection</a> <a href="/tags/restframework/" style="font-size: 15px;">restframework</a> <a href="/tags/token/" style="font-size: 10px;">token</a> <a href="/tags/v-if/" style="font-size: 10px;">v-if</a> <a href="/tags/vuerouter/" style="font-size: 10px;">vuerouter</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a>
+        <a href="/tags/axios/" style="font-size: 10px;">axios</a> <a href="/tags/binary-tree/" style="font-size: 10px;">binary tree</a> <a href="/tags/closure/" style="font-size: 10px;">closure</a> <a href="/tags/cors/" style="font-size: 10px;">cors</a> <a href="/tags/csrf/" style="font-size: 10px;">csrf</a> <a href="/tags/decorator/" style="font-size: 10px;">decorator</a> <a href="/tags/django/" style="font-size: 20px;">django</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/hook/" style="font-size: 10px;">hook</a> <a href="/tags/lambda/" style="font-size: 10px;">lambda</a> <a href="/tags/mermaid/" style="font-size: 10px;">mermaid</a> <a href="/tags/middleware/" style="font-size: 10px;">middleware</a> <a href="/tags/options/" style="font-size: 10px;">options</a> <a href="/tags/recursion/" style="font-size: 10px;">recursion</a> <a href="/tags/reflection/" style="font-size: 10px;">reflection</a> <a href="/tags/restframework/" style="font-size: 15px;">restframework</a> <a href="/tags/token/" style="font-size: 10px;">token</a> <a href="/tags/v-templete/" style="font-size: 10px;">v-templete</a> <a href="/tags/vuerouter/" style="font-size: 10px;">vuerouter</a> <a href="/tags/vuex/" style="font-size: 10px;">vuex</a>
     </div>
 </div>
     
