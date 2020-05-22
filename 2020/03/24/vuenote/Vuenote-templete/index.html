@@ -19,7 +19,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/images/og_image.png">
 <meta property="article:published_time" content="2020-03-24T08:49:21.000Z">
-<meta property="article:modified_time" content="2020-04-01T01:05:08.985Z">
+<meta property="article:modified_time" content="2020-04-02T23:36:02.726Z">
 <meta property="article:author" content="FIFA_Z">
 <meta property="article:tag" content="v-if">
 <meta property="article:tag" content="v-for">
@@ -161,7 +161,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    8 分钟 读完 (大约 1172 个字)
+                    8 分钟 读完 (大约 1205 个字)
                 </span>
                 
                 
@@ -185,8 +185,10 @@
 
 <h2 id="v-bind"><a href="#v-bind" class="headerlink" title="v-bind"></a>v-bind</h2><p>给DOM元素的属性绑定data内变量</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">templete</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--语法糖，DOM属性前面加: 表示通过v-bind声明要绑定data内元素--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">:src</span>=<span class="string">"this.img"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">templete</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">    data()&#123;</span><br><span class="line"><span class="actionscript">        <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="actionscript">            img: <span class="string">'www.XX.com'</span></span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>v-bind是单向绑定，即data中绑定的变量改变，会引起对应DOM属性改变。而v-model则是双向绑定。</p>
-<h2 id="v-model"><a href="#v-model" class="headerlink" title="v-model"></a>v-model</h2><h2 id="v-if和v-else"><a href="#v-if和v-else" class="headerlink" title="v-if和v-else"></a>v-if和v-else</h2><p>当满足<code>v-if</code>的条件时，进行渲染，否则不渲染 <code>v-if</code> 和<code>v-else</code>和计算机语言中的<code>if else</code>一样</p>
+<p>v-bind是单向绑定，即data中绑定的变量改变，会引起对应DOM属性改变。而v-model则是双向绑定，且<code>v-blind</code>绑定的是data内变量和DOM属性。<code>v-model</code>则是DOM内显示的变量和data变量。</p>
+<h2 id="v-model"><a href="#v-model" class="headerlink" title="v-model"></a>v-model</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"yourbirth"</span> <span class="attr">v-model</span>=<span class="string">"yourbirth"</span> <span class="attr">name</span>=<span class="string">""</span> <span class="attr">placeholder</span>=<span class="string">"你的生日是什么时候?"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="v-if和v-else"><a href="#v-if和v-else" class="headerlink" title="v-if和v-else"></a>v-if和v-else</h2><p>当满足<code>v-if</code>的条件时，进行渲染，否则不渲染 <code>v-if</code> 和<code>v-else</code>和计算机语言中的<code>if else</code>一样</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--当 this.isShow==true 时，才会渲染--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span> <span class="attr">v-if</span>=<span class="string">"this.isShow"</span>&gt;</span>哈哈<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--除了if以外的所有情况，渲染下面的DOM--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span> <span class="attr">v-else</span>&gt;</span>嘿嘿<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="v-if-v-else结合使用"><a href="#v-if-v-else结合使用" class="headerlink" title="v-if, v-else结合使用"></a>v-if, v-else结合使用</h3><p>和python的<code>if elif</code>使用一样</p>
@@ -253,8 +255,8 @@
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2020/03/19/Django-cross-site/">
-                <span class="level-item">Django cross-site</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/03/24/vuenote/Vuenote-vuex/">
+                <span class="level-item">Vue笔记：vuex</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
